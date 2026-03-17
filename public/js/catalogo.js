@@ -1,6 +1,5 @@
 // public/js/catalogo.js
 
-// Lista de productos
 const productos = [
   { nombre: "Escalera", precio: "$590/día", img: "assets/img/escalera.jpg" },
   { nombre: "Hidrolavadora", precio: "$680/día", img: "assets/img/hidrolavadora.jpg" },
@@ -19,7 +18,6 @@ const productos = [
   { nombre: "Carretilla estándar", precio: "$250/día", img: "assets/img/carretilla.jpg" }
 ];
 
-// Renderizado dinámico
 const contenedor = document.getElementById("catalogo");
 const grid = document.createElement("div");
 grid.className = "grid";
