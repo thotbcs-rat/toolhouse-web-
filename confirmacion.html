@@ -1,81 +1,26 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toolhouse - Confirmación de Renta</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+// confirmacion.js
 
-  <!-- Header -->
-  <header>
-    <div class="logo">TOOLHOUSE</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="catalogo.html">Catálogo</a></li>
-        <li><a href="index.html#mision">Misión</a></li>
-        <li><a href="index.html#vision">Visión</a></li>
-        <li><a href="index.html#filosofia">Filosofía</a></li>
-        <li><a href="index.html#funcionamos">Cómo funcionamos</a></li>
-        <li><a href="index.html#contacto">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
 
-  <!-- Confirmación -->
-  <main>
-    <section class="confirmacion">
-      <h1>🎉 ¡Renta confirmada!</h1>
-      <p class="mensaje">Tu herramienta está lista para la entrega.</p>
+  const entrega = params.get("entrega");
+  const recogida = params.get("recogida");
+  const ubicacion = params.get("ubicacion");
+  const producto = params.get("producto");
 
-      <div class="detalles">
-        <h2>Detalles de tu renta</h2>
-        <ul>
-          <li><strong>Fecha de entrega:</strong> 20/03/2026</li>
-          <li><strong>Fecha de recogida:</strong> 23/03/2026</li>
-          <li><strong>Ubicación de entrega:</strong> Av. Patria #123, Zapopan, Jalisco</li>
-          <li><strong>Seguro incluido:</strong> $200</li>
-        </ul>
-      </div>
+  // Insertar datos en la página
+  if (producto) {
+    document.querySelector(".confirmacion h1").textContent = `🎉 ¡Renta confirmada de ${producto}!`;
+  }
 
-      <div class="proceso">
-        <h2>Proceso</h2>
-        <p>La noche anterior a tu entrega, tu equipo será cargado en el camión.  
-        A partir de las <strong>6:00 AM</strong> comenzará la ruta programada.  
-        Al finalizar tu periodo de renta, pasaremos a recoger el equipo y lo llevaremos a nuestro almacén para mantenimiento.</p>
-      </div>
-
-      <div class="acciones">
-        <a href="catalogo.html" class="btn-secondary">Ver catálogo completo</a>
-        <a href="catalogo.html" class="btn">Rentar otra herramienta</a>
-        <a href="index.html" class="btn-secondary">Volver al inicio</a>
-      </div>
-
-      <div class="contacto-rapido">
-        <h2>Contacto rápido</h2>
-        <p>Si necesitas modificar tu renta o tienes dudas:</p>
-        <ul>
-          <li>Teléfono / WhatsApp: 331 143 5665</li>
-          <li>Correo: toolhousernt@gmail.com</li>
-        </ul>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 Toolhouse. Todos los derechos reservados.</p>
-    <nav>
-      <a href="index.html">Inicio</a> |
-      <a href="catalogo.html">Catálogo</a> |
-      <a href="index.html#mision">Misión</a> |
-      <a href="index.html#vision">Visión</a> |
-      <a href="index.html#filosofia">Filosofía</a> |
-      <a href="index.html#contacto">Contacto</a>
-    </nav>
-  </footer>
-
-</body>
-</html>
+  const detallesList = document.querySelector(".detalles ul");
+  if (detallesList) {
+    detallesList.innerHTML = `
+      <li><strong>Producto:</strong> ${producto || "No especificado"}</li>
+      <li><strong>Fecha de entrega:</strong> ${entrega || "No especificada"}</li>
+      <li><strong>Fecha de recogida:</strong> ${recogida || "No especificada"}</li>
+      <li><strong>Ubicación de entrega:</strong> ${ubicacion || "No especificada"}</li>
+      <li><strong>Seguro incluido:</strong> $200</li>
+    `;
+  }
+});
