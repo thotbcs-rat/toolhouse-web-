@@ -1,49 +1,37 @@
-// admin.js
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toolhouse - Administrador</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Lista de productos del catálogo
-  const productos = [
-    "Escalera",
-    "Hidrolavadora",
-    "Roto martillo",
-    "Podadora",
-    "Aspiradora",
-    "Corta Setos L",
-    "Pulidora orbital",
-    "Pulidora orbital de palma",
-    "Generador de vapor",
-    "Sierra de calar",
-    "Soplador de hojas",
-    "Kit de herramientas básicas",
-    "Engrapadora carpintera",
-    "Pistola de clavos",
-    "Carretilla estándar"
-  ];
+  <header>
+    <div class="logo">TOOLHOUSE</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a href="admin.html">Administrador</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  // Función para reponer stock
-  function reponerStock(nombreProducto, cantidad) {
-    const stockKey = `stock_${nombreProducto}`;
-    localStorage.setItem(stockKey, cantidad);
-    alert(`✅ Stock de ${nombreProducto} repuesto a ${cantidad} unidades.`);
-  }
+  <main>
+    <section class="admin-panel">
+      <h1>Panel de administración</h1>
+      <p>Reponer stock de productos</p>
 
-  // Botón general: reponer todos
-  const btnReponerTodo = document.getElementById("reponer-todo");
-  if (btnReponerTodo) {
-    btnReponerTodo.addEventListener("click", () => {
-      productos.forEach((producto) => {
-        reponerStock(producto, 5);
-      });
-      alert("✅ Stock de todos los productos ha sido repuesto a 5 unidades.");
-    });
-  }
+      <div id="admin-productos"></div>
+    </section>
+  </main>
 
-  // Botones individuales
-  const botones = document.querySelectorAll(".productos-admin .btn");
-  botones.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const producto = btn.getAttribute("data-producto");
-      reponerStock(producto, 5);
-    });
-  });
-});
+  <footer>
+    <p>&copy; 2026 Toolhouse. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
