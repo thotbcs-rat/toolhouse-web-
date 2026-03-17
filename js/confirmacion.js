@@ -1,44 +1,24 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toolhouse - Confirmación</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+document.addEventListener("DOMContentLoaded", () => {
+  const productos = [
+    { nombre: "Escalera", precio: 300, stock: 5, img: "assets/img/escalera.jpg" },
+    { nombre: "Hidrolavadora", precio: 680, stock: 3, img: "assets/img/hidrolavadora.jpg" },
+    { nombre: "Podadora", precio: 590, stock: 2, img: "assets/img/podadora.jpg" }
+  ];
 
-  <header>
-    <div class="logo">TOOLHOUSE</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="catalogo.html">Catálogo</a></li>
-      </ul>
-    </nav>
-  </header>
+  const productoSeleccionado = localStorage.getItem("productoSeleccionado");
+  const producto = productos.find(p => p.nombre === productoSeleccionado);
 
-  <main>
-    <section class="confirmacion">
-      <h1>🎉 ¡Renta confirmada!</h1>
-      <p><strong>Producto:</strong> <span id="nombre"></span></p>
-      <p><strong>Precio:</strong> <span id="precio"></span></p>
-      <p><strong>Disponibilidad restante:</strong> <span id="stock"></span></p>
-      <p><strong>Fecha de entrega:</strong> <span id="fechaEntrega"></span></p>
-      <p><strong>Fecha de recogida:</strong> <span id="fechaRecogida"></span></p>
-      <p><strong>Ubicación:</strong> <span id="ubicacion"></span></p>
-      <p><strong>Seguro adicional:</strong> $200</p>
+  const fechaEntrega = localStorage.getItem("fechaEntrega");
+  const fechaRecogida = localStorage.getItem("fechaRecogida");
+  const ubicacion = localStorage.getItem("ubicacion");
 
-      <div class="nav-extra">
-        <a href="catalogo.html" class="btn-secondary">Volver al catálogo</a>
-      </div>
-    </section>
-  </main>
+  if (producto) {
+    document.getElementById("nombre").textContent = producto.nombre;
+    document.getElementById("precio").textContent = `$${producto.precio}/día`;
+    document.getElementById("stock").textContent = `Disponibles: ${producto.stock}`;
+  }
 
-  <footer>
-    <p>&copy; 2026 Toolhouse. Todos los derechos reservados.</p>
-  </footer>
-
-  <script src="js/confirmacion.js"></script>
-</body>
-</html>
+  if (fechaEntrega) document.getElementById("fechaEntrega").textContent = fechaEntrega;
+  if (fechaRecogida) document.getElementById("fechaRecogida").textContent = fechaRecogida;
+  if (ubicacion) document.getElementById("ubicacion").textContent = ubicacion;
+});
