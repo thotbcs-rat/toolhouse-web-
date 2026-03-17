@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toolhouse - Panel de Administración</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">TOOLHOUSE - Admin</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Panel de administración -->
+  <main>
+    <section class="admin-panel">
+      <h1>Panel de Administración</h1>
+      <p>Usa los botones para reponer stock de los productos.</p>
+
+      <!-- Botón para reponer todo -->
+      <button id="reponer-todo" class="btn">Reponer todo a 5 unidades</button>
+
+      <!-- Lista de productos individuales -->
+      <div class="productos-admin">
+        <h2>Reponer producto específico</h2>
+        <button class="btn" data-producto="Escalera">Escalera</button>
+        <button class="btn" data-producto="Hidrolavadora">Hidrolavadora</button>
+        <button class="btn" data-producto="Podadora">Podadora</button>
+        <button class="btn" data-producto="Aspiradora">Aspiradora</button>
+        <button class="btn" data-producto="Kit de herramientas básicas">Kit básico</button>
+        <!-- Agrega más botones según catálogo -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Toolhouse. Panel de administración interno.</p>
+  </footer>
+
+  <!-- Script -->
+  <script src="js/admin.js"></script>
+</body>
+</html>
