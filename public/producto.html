@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toolhouse - Producto</title>
+  <title>Detalle del producto</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,35 +19,25 @@
   </header>
 
   <main>
-    <section class="producto-detalle">
-      <h1 id="nombre"></h1>
-      <p><strong>Precio de renta:</strong> <span id="precio"></span></p>
-      <p><strong>Disponibilidad:</strong> <span id="stock"></span></p>
-      <p><strong>Seguro adicional:</strong> $200</p>
+    <section id="detalle-producto">
+      <h2 id="nombre"></h2>
+      <p id="precio"></p>
+      <p><strong>Disponibilidad:</strong> 5 unidades</p>
+      <p><strong>Condiciones:</strong> La renta debe hacerse con al menos 24 horas de anticipación.</p>
+      <p><strong>Seguro:</strong> Incluye servicio de seguro de daños, pérdida y contratiempos ($200).</p>
 
-      <div class="galeria">
-        <img id="imagen" src="" alt="Imagen del producto">
-      </div>
+      <form>
+        <label>Fecha de entrega:</label>
+        <input type="date" required><br><br>
 
-      <div class="form-renta">
-        <h2>Solicitar renta</h2>
-        <form>
-          <label for="fecha-entrega">Fecha de entrega:</label>
-          <input type="date" id="fecha-entrega" name="fecha-entrega" required>
+        <label>Fecha de recogida:</label>
+        <input type="date" required><br><br>
 
-          <label for="fecha-recogida">Fecha de recogida:</label>
-          <input type="date" id="fecha-recogida" name="fecha-recogida" required>
+        <label>Ubicación de entrega:</label>
+        <input type="text" placeholder="Dirección completa" required><br><br>
 
-          <label for="ubicacion">Ubicación de entrega:</label>
-          <input type="text" id="ubicacion" name="ubicacion" placeholder="Dirección completa" required>
-
-          <button type="submit" class="btn">Confirmar renta</button>
-        </form>
-      </div>
-
-      <div class="nav-extra">
-        <a href="catalogo.html" class="btn-secondary">Volver al catálogo</a>
-      </div>
+        <button type="submit" class="btn">Confirmar renta</button>
+      </form>
     </section>
   </main>
 
@@ -55,19 +45,15 @@
     <p>&copy; 2026 Toolhouse. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="js/producto.js"></script>
-
   <script>
-document.querySelector(".form-renta form").addEventListener("submit", function(e) {
-  e.preventDefault();
+    // Leer parámetros de la URL
+    const params = new URLSearchParams(window.location.search);
+    const nombre = params.get("nombre");
+    const precio = params.get("precio");
 
-  localStorage.setItem("fechaEntrega", document.getElementById("fecha-entrega").value);
-  localStorage.setItem("fechaRecogida", document.getElementById("fecha-recogida").value);
-  localStorage.setItem("ubicacion", document.getElementById("ubicacion").value);
-
-  window.location.href = "confirmacion.html";
-});
-</script>
-
+    // Insertar en el HTML
+    if (nombre) document.getElementById("nombre").textContent = nombre;
+    if (precio) document.getElementById("precio").textContent = "Precio: " + precio;
+  </script>
 </body>
 </html>
