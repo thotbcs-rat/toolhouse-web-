@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toolhouse - Confirmación</title>
+  <title>Confirmación de renta</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,19 +19,11 @@
   </header>
 
   <main>
-    <section class="confirmacion">
-      <h1>🎉 ¡Renta confirmada!</h1>
-      <p><strong>Producto:</strong> <span id="nombre"></span></p>
-      <p><strong>Precio:</strong> <span id="precio"></span></p>
-      <p><strong>Disponibilidad restante:</strong> <span id="stock"></span></p>
-      <p><strong>Fecha de entrega:</strong> <span id="fechaEntrega"></span></p>
-      <p><strong>Fecha de recogida:</strong> <span id="fechaRecogida"></span></p>
-      <p><strong>Ubicación:</strong> <span id="ubicacion"></span></p>
-      <p><strong>Seguro adicional:</strong> $200</p>
-
-      <div class="nav-extra">
-        <a href="catalogo.html" class="btn-secondary">Volver al catálogo</a>
-      </div>
+    <section id="confirmacion">
+      <h2>¡Renta confirmada!</h2>
+      <p id="detalle"></p>
+      <p id="total"></p>
+      <p><strong>Recuerda:</strong> La renta incluye seguro de daños, pérdida y contratiempos ($200).</p>
     </section>
   </main>
 
@@ -39,6 +31,40 @@
     <p>&copy; 2026 Toolhouse. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="js/confirmacion.js"></script>
+  <script>
+    // Leer parámetros de la URL
+    const params = new URLSearchParams(window.location.search);
+    const nombre = params.get("nombre");
+    const precio = params.get("precio"); // ejemplo: "$680/día"
+    const entrega = params.get("entrega");
+    const recogida = params.get("recogida");
+    const ubicacion = params.get("ubicacion");
+
+    // Calcular días de renta
+    let dias = 1;
+    if (entrega && recogida) {
+      const fechaEntrega = new Date(entrega);
+      const fechaRecogida = new Date(recogida);
+      const diff = (fechaRecogida - fechaEntrega) / (1000 * 60 * 60 * 24);
+      dias = diff > 0 ? diff : 1;
+    }
+
+    // Extraer número del precio (ejemplo "$680/día" → 680)
+    let precioNum = 0;
+    if (precio) {
+      precioNum = parseInt(precio.replace(/[^0-9]/g, ""));
+    }
+
+    // Calcular total (precio * días + seguro)
+    const seguro = 200;
+    const total = (precioNum * dias) + seguro;
+
+    // Mostrar detalles
+    document.getElementById("detalle").textContent =
+      `Has rentado: ${nombre} por ${dias} día(s). Entrega: ${entrega}, Recogida: ${recogida}, Ubicación: ${ubicacion}.`;
+
+    document.getElementById("total").textContent =
+      `Total a pagar: $${total} (incluye seguro de $${seguro}).`;
+  </script>
 </body>
 </html>
