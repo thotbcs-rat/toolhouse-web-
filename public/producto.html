@@ -26,15 +26,19 @@
       <p><strong>Condiciones:</strong> La renta debe hacerse con al menos 24 horas de anticipación.</p>
       <p><strong>Seguro:</strong> Incluye servicio de seguro de daños, pérdida y contratiempos ($200).</p>
 
-      <form>
+      <form action="confirmacion.html" method="get">
+        <!-- Hidden inputs para pasar nombre y precio -->
+        <input type="hidden" id="nombreInput" name="nombre">
+        <input type="hidden" id="precioInput" name="precio">
+
         <label>Fecha de entrega:</label>
-        <input type="date" required><br><br>
+        <input type="date" name="entrega" required><br><br>
 
         <label>Fecha de recogida:</label>
-        <input type="date" required><br><br>
+        <input type="date" name="recogida" required><br><br>
 
         <label>Ubicación de entrega:</label>
-        <input type="text" placeholder="Dirección completa" required><br><br>
+        <input type="text" name="ubicacion" required><br><br>
 
         <button type="submit" class="btn">Confirmar renta</button>
       </form>
@@ -46,14 +50,18 @@
   </footer>
 
   <script>
-    // Leer parámetros de la URL
     const params = new URLSearchParams(window.location.search);
     const nombre = params.get("nombre");
     const precio = params.get("precio");
 
-    // Insertar en el HTML
-    if (nombre) document.getElementById("nombre").textContent = nombre;
-    if (precio) document.getElementById("precio").textContent = "Precio: " + precio;
+    if (nombre) {
+      document.getElementById("nombre").textContent = nombre;
+      document.getElementById("nombreInput").value = nombre;
+    }
+    if (precio) {
+      document.getElementById("precio").textContent = "Precio: " + precio;
+      document.getElementById("precioInput").value = precio;
+    }
   </script>
 </body>
 </html>
