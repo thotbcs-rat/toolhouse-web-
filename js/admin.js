@@ -1,7 +1,7 @@
 // admin.js
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Lista de productos que se manejan en el catálogo
+  // Lista de productos del catálogo
   const productos = [
     "Escalera",
     "Hidrolavadora",
@@ -24,7 +24,26 @@ document.addEventListener("DOMContentLoaded", () => {
   function reponerStock(nombreProducto, cantidad) {
     const stockKey = `stock_${nombreProducto}`;
     localStorage.setItem(stockKey, cantidad);
-    console.log(`Stock de ${nombreProducto} repuesto a ${cantidad} unidades.`);
+    alert(`✅ Stock de ${nombreProducto} repuesto a ${cantidad} unidades.`);
   }
 
-  // Ej
+  // Botón general: reponer todos
+  const btnReponerTodo = document.getElementById("reponer-todo");
+  if (btnReponerTodo) {
+    btnReponerTodo.addEventListener("click", () => {
+      productos.forEach((producto) => {
+        reponerStock(producto, 5);
+      });
+      alert("✅ Stock de todos los productos ha sido repuesto a 5 unidades.");
+    });
+  }
+
+  // Botones individuales
+  const botones = document.querySelectorAll(".productos-admin .btn");
+  botones.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const producto = btn.getAttribute("data-producto");
+      reponerStock(producto, 5);
+    });
+  });
+});
