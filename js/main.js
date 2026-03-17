@@ -30,15 +30,32 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Simulación de envío
-      alert(`✅ Renta confirmada:
-      - Entrega: ${fechaEntrega.toLocaleDateString()}
-      - Recogida: ${fechaRecogida.toLocaleDateString()}
-      - Ubicación: ${ubicacion}
-      
-      Recibirás tu herramienta en la ruta programada.`);
-      
-      form.reset();
+      // 🔽 Reducir stock disponible
+      const productoNombre = document.querySelector(".producto-detalle h1").textContent;
+      let stock = localStorage.getItem(`stock_${productoNombre}`);
+
+      if (stock) {
+        stock = parseInt(stock, 10);
+        if (stock > 0) {
+          localStorage.setItem(`stock_${productoNombre}`, stock - 1);
+        } else {
+          alert("Lo sentimos, este producto ya no tiene stock disponible.");
+          return;
+        }
+      } else {
+        // Si no existe aún, inicializamos con un valor genérico
+        localStorage.setItem(`stock_${productoNombre}`, 4); // ejemplo inicial
+      }
+
+      // 🔀 Redirigir a confirmacion.html con datos
+      const params = new URLSearchParams({
+        entrega: fechaEntrega.toLocaleDateString(),
+        recogida: fechaRecogida.toLocaleDateString(),
+        ubicacion: ubicacion,
+        producto: productoNombre
+      });
+
+      window.location.href = `confirmacion.html?${params.toString()}`;
     });
   }
 });
