@@ -1,37 +1,33 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toolhouse - Administrador</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+document.addEventListener("DOMContentLoaded", () => {
+  const productos = [
+    { nombre: "Escalera", precio: 300, img: "assets/img/escalera.jpg" },
+    { nombre: "Hidrolavadora", precio: 680, img: "assets/img/hidrolavadora.jpg" },
+    { nombre: "Podadora", precio: 590, img: "assets/img/podadora.jpg" }
+  ];
 
-  <header>
-    <div class="logo">TOOLHOUSE</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="catalogo.html">Catálogo</a></li>
-        <li><a href="admin.html">Administrador</a></li>
-      </ul>
-    </nav>
-  </header>
+  const contenedor = document.getElementById("admin-productos");
 
-  <main>
-    <section class="admin-panel">
-      <h1>Panel de administración</h1>
-      <p>Reponer stock de productos</p>
+  productos.forEach(p => {
+    // Leer stock desde localStorage o asignar valor inicial
+    const stockKey = `stock_${p.nombre}`;
+    let stockActual = parseInt(localStorage.getItem(stockKey)) || 0;
 
-      <div id="admin-productos"></div>
-    </section>
-  </main>
+    const card = document.createElement("div");
+    card.classList.add("admin-card");
+    card.innerHTML = `
+      <h3>${p.nombre}</h3>
+      <p>Stock actual: <span id="stock-${p.nombre}">${stockActual}</span></p>
+      <button onclick="reponerStock('${p.nombre}')">Reponer +1</button>
+    `;
+    contenedor.appendChild(card);
+  });
 
-  <footer>
-    <p>&copy; 2026 Toolhouse. Todos los derechos reservados.</p>
-  </footer>
-
-  <script src="js/admin.js"></script>
-</body>
-</html>
+  window.reponerStock = function(nombre) {
+    const stockKey = `stock_${nombre}`;
+    let stockActual = parseInt(localStorage.getItem(stockKey)) || 0;
+    stockActual++;
+    localStorage.setItem(stockKey, stockActual);
+    document.getElementById(`stock-${nombre}`).textContent = stockActual;
+    alert(`✅ Stock de ${nombre} repuesto. Ahora hay ${stockActual} unidades.`);
+  };
+});
