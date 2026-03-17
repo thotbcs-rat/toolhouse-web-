@@ -1,37 +1,27 @@
-// catalogo.js
-
 document.addEventListener("DOMContentLoaded", () => {
-  const productos = document.querySelectorAll(".producto");
+  const productos = [
+    { nombre: "Escalera", precio: 300, stock: 5, img: "assets/img/escalera.jpg" },
+    { nombre: "Hidrolavadora", precio: 680, stock: 3, img: "assets/img/hidrolavadora.jpg" },
+    { nombre: "Podadora", precio: 590, stock: 2, img: "assets/img/podadora.jpg" }
+  ];
 
-  productos.forEach((producto) => {
-    const nombre = producto.querySelector("h3").textContent;
-    const stockKey = `stock_${nombre}`;
+  const contenedor = document.getElementById("catalogo");
 
-    // Inicializar stock si no existe
-    if (!localStorage.getItem(stockKey)) {
-      localStorage.setItem(stockKey, 5); // valor inicial genérico
-    }
-
-    // Mostrar stock actual
-    const stock = localStorage.getItem(stockKey);
-    let stockElement = producto.querySelector(".stock");
-
-    if (!stockElement) {
-      stockElement = document.createElement("p");
-      stockElement.classList.add("stock");
-      producto.appendChild(stockElement);
-    }
-
-    stockElement.textContent = `Disponibles: ${stock} unidades`;
-
-    // Deshabilitar botón si no hay stock
-    if (parseInt(stock, 10) <= 0) {
-      const btn = producto.querySelector(".btn");
-      if (btn) {
-        btn.textContent = "Sin disponibilidad";
-        btn.classList.add("disabled");
-        btn.setAttribute("disabled", "true");
-      }
-    }
+  productos.forEach(p => {
+    const card = document.createElement("div");
+    card.classList.add("producto");
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.nombre}">
+      <h3>${p.nombre}</h3>
+      <p>$${p.precio}/día</p>
+      <p>Disponibles: ${p.stock}</p>
+      <button onclick="verProducto('${p.nombre}')">Ver producto</button>
+    `;
+    contenedor.appendChild(card);
   });
+
+  window.verProducto = function(nombre) {
+    localStorage.setItem("productoSeleccionado", nombre);
+    window.location.href = "producto.html";
+  };
 });
