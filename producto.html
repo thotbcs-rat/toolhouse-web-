@@ -8,50 +8,27 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <div class="logo">TOOLHOUSE</div>
     <nav>
       <ul>
         <li><a href="index.html">Inicio</a></li>
         <li><a href="catalogo.html">Catálogo</a></li>
-        <li><a href="index.html#mision">Misión</a></li>
-        <li><a href="index.html#vision">Visión</a></li>
-        <li><a href="index.html#filosofia">Filosofía</a></li>
-        <li><a href="index.html#funcionamos">Cómo funcionamos</a></li>
-        <li><a href="index.html#contacto">Contacto</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Producto -->
   <main>
     <section class="producto-detalle">
-      <h1>Nombre del producto</h1>
-      <p><strong>Precio de renta:</strong> $XXX/día</p>
-      <p><strong>Disponibilidad:</strong> 5 unidades</p>
+      <h1 id="nombre"></h1>
+      <p><strong>Precio de renta:</strong> <span id="precio"></span></p>
+      <p><strong>Disponibilidad:</strong> <span id="stock"></span></p>
       <p><strong>Seguro adicional:</strong> $200</p>
 
-      <!-- Galería multimedia -->
       <div class="galeria">
-        <img src="assets/img/producto.jpg" alt="Imagen del producto">
-        <img src="assets/img/producto2.jpg" alt="Imagen del producto en uso">
+        <img id="imagen" src="" alt="Imagen del producto">
       </div>
 
-      <!-- Videos tutoriales -->
-      <div class="videos">
-        <h2>Tutoriales de uso</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" 
-          title="Tutorial de uso" frameborder="0" allowfullscreen></iframe>
-      </div>
-
-      <!-- Descripción -->
-      <div class="descripcion">
-        <h2>Descripción</h2>
-        <p>Características principales del producto, usos recomendados y beneficios de rentar con Toolhouse.</p>
-      </div>
-
-      <!-- Formulario de renta -->
       <div class="form-renta">
         <h2>Solicitar renta</h2>
         <form>
@@ -68,26 +45,16 @@
         </form>
       </div>
 
-      <!-- Navegación adicional -->
       <div class="nav-extra">
         <a href="catalogo.html" class="btn-secondary">Volver al catálogo</a>
-        <a href="catalogo.html" class="btn">Ver productos relacionados</a>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
     <p>&copy; 2026 Toolhouse. Todos los derechos reservados.</p>
-    <nav>
-      <a href="index.html">Inicio</a> |
-      <a href="catalogo.html">Catálogo</a> |
-      <a href="index.html#mision">Misión</a> |
-      <a href="index.html#vision">Visión</a> |
-      <a href="index.html#filosofia">Filosofía</a> |
-      <a href="index.html#contacto">Contacto</a>
-    </nav>
   </footer>
 
+  <script src="js/producto.js"></script>
 </body>
 </html>
