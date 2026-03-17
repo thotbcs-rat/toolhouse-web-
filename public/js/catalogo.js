@@ -34,7 +34,7 @@ productos.forEach(p => {
     <p><small>Disponibles: 5 unidades</small></p>
     <p><small>Renta mínima: 24h de anticipación</small></p>
     <p><small>Incluye seguro de daños, pérdida y contratiempos ($200)</small></p>
-    <a href="producto.html" class="btn">Solicitar renta</a>
+    <a href="producto.html?nombre=${encodeURIComponent(p.nombre)}&precio=${encodeURIComponent(p.precio)}" class="btn">Solicitar renta</a>
   `;
   grid.appendChild(div);
 });
