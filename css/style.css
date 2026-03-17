@@ -175,7 +175,29 @@ footer {
   text-align: center;
   padding: 1rem;
 }
+/* Stock dinámico */
+.producto .stock {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
 
+/* Disponible */
+.producto .stock {
+  color: green;
+}
+
+/* Sin disponibilidad */
+.producto .stock.sin-disponibilidad {
+  color: red;
+}
+
+.producto .btn.disabled {
+  background-color: var(--plateado);
+  color: var(--negro);
+  cursor: not-allowed;
+  border: 1px solid var(--plateado);
+}
 footer nav a {
   color: var(--blanco);
   text-decoration: none;
